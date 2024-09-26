@@ -19,7 +19,18 @@ export interface User {
   role: "ADMIN" | "SUPER_ADMIN";
 }
 
-const originalDB = {
+export interface Database {
+  rooms: Room[];
+  messages: Message[];
+  users: User[];
+}
+
+export interface Payload {
+  username: string;
+  role: string;
+}
+
+const originalDB: Database = {
   rooms: [
     {
       roomId: "okhkUzffzCGMqtfC1uv6x",
@@ -59,7 +70,7 @@ const adapter = onProduction
   ? new MemorySync()
   : new JSONFileSync("DatabaseFile.json");
 let lowDB = new LowSync(adapter, originalDB);
-export let DB = onProduction ? _.cloneDeep(originalDB) : lowDB.data;
+export let DB: any = onProduction ? _.cloneDeep(originalDB) : lowDB.data;
 
 export function resetDB() {
   if (onProduction) {
