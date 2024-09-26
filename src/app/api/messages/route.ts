@@ -36,7 +36,7 @@ export const POST = async (request: NextRequest) => {
   const roomId = body.roomId;
   const messageText = body.messageText;
   
-  const foundRoom = DB.rooms.find((room: { roomId: any; }) => room.roomId === roomId)
+  const foundRoom = DB.rooms.find((room) => room.roomId === roomId)
 
   if(!foundRoom){
     return NextResponse.json(
@@ -84,7 +84,7 @@ export const DELETE = async (request: NextRequest) => {
 
   readDB();
 
-  const messageIndex = DB.messages.findIndex((message: { messageId: any; }) => message.messageId === messageId);
+  const messageIndex = DB.messages.findIndex((message) => message.messageId === messageId);
 
 
   if (messageIndex === -1) {

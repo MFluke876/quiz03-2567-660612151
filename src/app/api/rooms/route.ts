@@ -3,9 +3,6 @@ import { checkToken } from "@lib/checkToken";
 import { nanoid } from "nanoid";
 import { NextRequest, NextResponse } from "next/server";
 
-import jwt from "jsonwebtoken";
-
-
 export const GET = async () => {
   readDB();
 
@@ -38,7 +35,7 @@ export const POST = async (request: NextRequest) => {
   const { roomName } = body;
 
   const foundName = DB.rooms.find(
-    (x: { roomName: string; }) => x.roomName === roomName
+    (x) => x.roomName === roomName
   );
 
   if (foundName) {
